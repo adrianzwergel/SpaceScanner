@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Space Scanner</a>
+
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['home']">Start <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="map">Karte</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="configuration">Konfiguration</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="about">Über</a>
+      </li>
+    </ul>
+
+
+  </div>
+    <app-status-warning></app-status-warning>
+    <button class="btn btn-dark" type="button" style="width:80px">{{connection.latency}}ms</button>
+    <button class="btn btn-dark" type="button"><i *ngIf="!connection.connected" class="material-icons text-danger align-middle">signal_cellular_null</i><i *ngIf="connection.connected" class="material-icons text-success align-middle">signal_cellular_4_bar</i></button>
+    <button class="btn btn-dark" type="button" routerLink="setting"><i class="material-icons align-middle">settings</i></button>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>

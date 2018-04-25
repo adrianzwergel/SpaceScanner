@@ -1,0 +1,38 @@
+Socket-Api
+    Server:
+        getPing - date
+
+        getConfig - null
+        setConfig - config
+
+        startScan - null
+        stopScan - null
+
+        drive - arrow
+        turn - percent
+        turnCam - percent
+        
+    Client:
+        rGetPing - date
+
+        rGetConfig - config
+        configUpdated - config
+
+        imageCreated - image
+        scanCreated - scan
+        scanFinished - scan
+        
+        positionUpdated - position
+
+        errorThrowed - error
+
+Objects:
+    date
+    percent
+    arrow percent, angle
+    position x, y, angle, camAngle
+    scan id, start, end, images<image>[]
+    image id, scanId, path, delay, position<position>
+    error request, text
+    config id, name, items<configitem>[]
+    configitem id, name, type, value, unit

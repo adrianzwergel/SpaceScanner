@@ -1,0 +1,5 @@
+  <app-navigation></app-navigation>
+  <app-live-bar *ngIf="!(router.url == '/about'||router.url == '/setting')"></app-live-bar>
+  <router-outlet></router-outlet>
+  <app-joypad-left *ngIf="router.url == '/home'||router.url == '/'||router.url == '/map'"></app-joypad-left>
+  <app-joypad-right *ngIf="router.url == '/home'||router.url == '/'||router.url == '/map'"></app-joypad-right>

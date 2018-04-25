@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Konfiguration</h2>
+  <div class="btn-group">
+    <button type="button" class="btn btn-secondary">Auto</button>
+    <button type="button" class="btn btn-secondary">Default</button>
+    <button type="button" class="btn btn-secondary">Save</button>
+  </div>
+
+  <div *ngFor="let element of Config">
+    <h3 class="text-primary">{{element.name}}</h3>
+    <table class="table table-striped">
+      <tbody>
+        <tr *ngFor="let item of element.items">
+          <th scope="row">{{item.name}}</th>
+          <td>
+            <input *ngIf="item.type == 'number'" type="number" class="form-control" [value]="item.value" (input)="item.value = $event.target.value; update();"/>
+            <input *ngIf="item.type == 'text'" type="text" class="form-control" [value]="item.value" (input)="item.value = $event.target.value"/>
+            <label *ngIf="item.type == 'bool'" class="switch">
+              <input type="checkbox" [checked]="item.value">
+              <span class="slider round"></span>
+            </label>
+          </td>
+          <td>
+            {{item.unit}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+

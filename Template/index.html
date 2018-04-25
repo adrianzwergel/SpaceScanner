@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SpaceScanner</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        svg g circle {
+            box-shadow: 5px 10px #880088;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Space Scanner</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Start <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Karte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Steuerung</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Über</a>
+                </li>
+            </ul>
+
+            <form class="form-inline">
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <button type="button" class="btn btn-dark"></button>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="material-icons align-middle">warning</i> Probleme mit der Verbindung
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="#">Dropdown link</a>
+                            <a class="dropdown-item" href="#">Dropdown link</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-dark" type="submit">21ms</button>
+                <button class="btn btn-dark" type="submit"><i class="material-icons text-danger align-middle">signal_cellular_null</i><!--i class="material-icons text-success align-middle">signal_cellular_4_bar</i--></button>
+                <button class="btn btn-dark" type="submit"><i class="material-icons align-middle">settings</i></button>
+            </form>
+        </div>
+    </nav>
+
+    <div style="position: fixed; bottom: 0px; left: 0px; height: 200px; width: 200px;">
+        <svg id="controller" width="200" height="200">
+        <g id="joystickArea">
+            <circle  cx="100" cy="100" r="50" stroke="#007bff" stroke-width="2" fill="slategray"/>
+            <circle id="joystick" cx="100" cy="100" r="45" stroke="gray" stroke-width="1" fill="white" />
+        </g>
+        </svg>
+    </div>
+
+    <div style="position: fixed; bottom: 0px; right: 0px; height: 275px; width: 200px;">
+        <svg id="Sticks" width="200" height="275">
+        <g id="turnStickArea">
+            <rect x="50" y="75" rx="10" ry="10" width="100" height="50" stroke="#007bff" stroke-width="2" fill="slategray" />
+            <circle id="turnStick" cx="100" cy="100" r="45" stroke="gray" stroke-width="1" fill="white" />
+        </g>
+        <g id="turnStickArea">
+            <rect x="50" y="175" rx="10" ry="10" width="100" height="50" stroke="#007bff" stroke-width="2" fill="slategray" />
+            <circle id="turnStick" cx="100" cy="200" r="45" stroke="gray" stroke-width="1" fill="white" />
+        </g>
+    </svg>
+    </div>
+
+    <nav class="nav nav-underline justify-content-end" style="background-color: white">
+        <a class="nav-link" href="#"><i class="material-icons align-middle">directions_car</i> Angehalten</a>
+        <a class="nav-link" href="#"><i class="material-icons align-middle">scanner</i> 0°</a>
+        <a class="nav-link" href="#">A<i class="material-icons align-middle">loop</i> 0%</a>
+        <a class="nav-link" href="#">B<i class="material-icons align-middle">loop</i> 0%</a>
+        <a class="nav-link" href="#">C<i class="material-icons align-middle">loop</i> 0%</a>
+        <a class="nav-link" href="#"><i class="material-icons align-middle">navigation</i> S180°</a>
+        <a class="nav-link" href="#"><i class="material-icons align-middle">location_on</i> LAT49.4742071 LON8.53494739</a>
+    </nav>
+
+    <svg id="map" width="500" height="500" style="margin: 0 auto; display: block;">
+            <circle cx="50" cy="50" r="3" fill="#007bff" />
+            <circle cx="55" cy="50" r="3" fill="#007bff" />
+            <circle cx="60" cy="50" r="3" fill="#007bff" />
+            <circle cx="65" cy="50" r="3" fill="#007bff" />
+            <circle cx="70" cy="50" r="3" fill="#007bff" />
+            <circle cx="75" cy="50" r="3" fill="#007bff" />
+            <circle cx="80" cy="50" r="3" fill="#007bff" />
+            <circle cx="85" cy="50" r="3" fill="#007bff" />
+            <circle cx="90" cy="50" r="3" fill="#007bff" />
+            <circle cx="95" cy="50" r="3" fill="#007bff" />
+            <circle cx="100" cy="50" r="3" fill="#007bff" />
+            <circle cx="105" cy="50" r="3" fill="#007bff" />
+            <circle cx="105" cy="55" r="3" fill="#007bff" />
+            <circle cx="105" cy="60" r="3" fill="#007bff" />
+            <circle cx="105" cy="65" r="3" fill="#007bff" />
+            <circle cx="110" cy="65" r="3" fill="#007bff" />
+            <circle cx="115" cy="65" r="3" fill="#007bff" />
+            <circle cx="120" cy="65" r="3" fill="#007bff" />
+            <circle cx="125" cy="65" r="3" fill="#007bff" />
+            <circle cx="130" cy="65" r="3" fill="#007bff" />
+            <circle cx="135" cy="65" r="3" fill="#007bff" />
+            <circle cx="140" cy="65" r="3" fill="#007bff" />
+            <circle cx="145" cy="65" r="3" fill="#007bff" />
+            <circle cx="150" cy="65" r="3" fill="#007bff" />
+            <circle cx="155" cy="65" r="3" fill="#007bff" />
+            <circle cx="160" cy="65" r="3" fill="#007bff" />
+            <circle cx="165" cy="65" r="3" fill="#007bff" />
+            <circle cx="170" cy="65" r="3" fill="#007bff" />
+
+            <line x1="250" y1="250" x2="170" y2="65" stroke="dimgray" stroke-width="5" stroke-dasharray="15,2"/>
+
+            <polygon points="235,270 265,270 250,230" fill="red" />
+            <!--image href="https://cdn2.iconfinder.com/data/icons/programming-17/24/android-upload-512.png" x=230 y=230 height="40" width="40"/-->
+        </svg>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        var controller = document.getElementById('controller');
+        var joystick = document.getElementById('joystick');
+        var joystickArea = document.getElementById('joystickArea');
+
+        var pt = controller.createSVGPoint();
+
+        function cursorPoint(evt) {
+            pt.x = evt.clientX;
+            pt.y = evt.clientY;
+            return pt.matrixTransform(controller.getScreenCTM().inverse());
+        }
+
+        joystickArea.addEventListener('mouseleave', function() {
+            joystick.setAttribute('cx', 100);
+            joystick.setAttribute('cy', 100);
+            controller.removeEventListener('mousemove', refreshJoystick, true);
+        }, false);
+
+        joystickArea.addEventListener('mouseup', function() {
+            joystick.setAttribute('cx', 100);
+            joystick.setAttribute('cy', 100);
+            controller.removeEventListener('mousemove', refreshJoystick, true);
+        }, false);
+
+        joystickArea.addEventListener('mousedown', function(evt) {
+            controller.addEventListener('mousemove', refreshJoystick, true);
+            refreshJoystick(evt);
+        }, false);
+
+        function refreshJoystick(evt) {
+            var loc = cursorPoint(evt);
+            var dis = Math.sqrt(Math.pow(loc.x - 100, 2) + Math.pow(loc.y - 100, 2));
+            if (dis < 50) {
+                joystick.setAttribute('cx', loc.x);
+                joystick.setAttribute('cy', loc.y);
+            } else {
+                var a = (loc.y - 100) / (loc.x - 100);
+                var phi = 0;
+                if (!isFinite(a))
+                    phi = Math.PI / 2;
+                else {
+                    phi = Math.atan(a);
+                }
+
+                if (loc.x > 100) {
+                    joystick.setAttribute('cx', (50 * Math.cos(phi)) + 100);
+                    joystick.setAttribute('cy', (50 * Math.sin(phi)) + 100);
+                } else {
+                    joystick.setAttribute('cx', 100 - (50 * Math.cos(phi)));
+                    joystick.setAttribute('cy', 100 - (50 * Math.sin(phi)));
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>
